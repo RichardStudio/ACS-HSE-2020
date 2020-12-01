@@ -5,6 +5,8 @@
 #include <fstream>
 #include <string>
 
+// Т.к. char - это целочисленный тип, то технически условие не нарушено,
+// Но я решил использовать интересные символы, т.к. мне кажется это лучше подходит под данную задачу.
 std::map<char, char> charSet;
 // Изначальный текст
 static std::string inputStr;
@@ -18,7 +20,7 @@ static void makeCharSet() {
 		charSet[i] = i + 338;
 	}
 }
-// Переводим все буквы вв строчные
+// Переводим все буквы в строчные
 static std::string toLowerCase(std::string input) {
 	for (int i = 0; i < input.size(); ++i) {
 		if (input[i] >= 'A' && input[i] <= 'Z') {
@@ -67,11 +69,16 @@ void* func() {
 int main()
 {
 	makeCharSet();
-	std::cout << "Input text" << std::endl;
+	std::cout << "Input text:" << std::endl;
 	std::getline(std::cin, inputStr);
-	inputStr = toLowerCase(inputStr);
-	outputStr = inputStr;
-	func();
-	std::cout << outputStr;
+	if (inputStr.size() != 0) {
+		inputStr = toLowerCase(inputStr);
+		outputStr = inputStr;
+		func();
+		std::cout << outputStr;
+	}
+	else {
+		std::cout << "text is missing" << std::endl;
+	}
 }
 
