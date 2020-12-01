@@ -47,6 +47,10 @@ void* func() {
 	int threadBegin;
 	// Каждый поток обрабатывает по 5 символов (или меньше, если текст кончился), сразу создаю нужное кол-во потоков.
 	int numOfThreads = ceil(inputStr.size() / 5.0);
+	// При огромных текстах программа будет нецелесообразно создавать много потоков. Ограничем тысячей.
+	if (numOfThreads > 1000) {
+		numOfThreads = 1000;
+	}
 	// Создаем потоки приватный threadBegin - это символ, с которого поток начинает кодировать.
 	// Общий begin показывает, с какого символа начнет работать следующий поток.
 #pragma omp parallel num_threads(numOfThreads) private(threadBegin) shared(begin)
