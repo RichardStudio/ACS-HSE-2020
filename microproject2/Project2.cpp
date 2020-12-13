@@ -70,8 +70,16 @@ int main()
 {
     cout << "enter the capacity of the pot\n";
     cin >> m;
+    while (m < 1) {
+        cout << "wrong input. m >= 1. Try again.\n";
+        cin >> m;
+    }
     cout << "enter number of barbarians\n";
     cin >> n;
+    while (n < 1) {
+        cout << "wrong input. n >= 1. Try again.\n";
+        cin >> n;
+    }
     pthread_mutex_init(&mutexF, nullptr);
     pthread_mutex_init(&mutexS, nullptr);
     sem_init(&empty, 0, 1);
